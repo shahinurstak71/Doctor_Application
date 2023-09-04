@@ -30,7 +30,7 @@ class ApiServices {
     }
   }
 
-  static Future<int?> storePatient(id, name, int age) async {
+  static Future<int?> storePatient(id, name, String age) async {
     final Uri url = Uri.parse(
         'https://preview.ekrambdproject.xyz/doctor/api/store-patient');
     Map data = {

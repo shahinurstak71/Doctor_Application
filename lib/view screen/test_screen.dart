@@ -2,7 +2,8 @@ import 'package:doctor_robot/view%20screen/demo_screen.dart';
 import 'package:flutter/material.dart';
 
 class TestScreen extends StatefulWidget {
-  TestScreen({Key? key}) : super(key: key);
+  final String patientID;
+  TestScreen({Key? key, required this.patientID}) : super(key: key);
 
   @override
   State<TestScreen> createState() => _TestScreenState();
@@ -275,7 +276,7 @@ class _TestScreenState extends State<TestScreen> {
               ),
               child: const Text('Submit'),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> TestScreen()));
+                // Navigator.push(context, MaterialPageRoute(builder: (context)=> TestScreen()));
               },
             ),
           ],

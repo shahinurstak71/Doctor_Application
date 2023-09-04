@@ -161,19 +161,7 @@ class _DoctorState extends State<Doctor> {
                             const BorderRadius.all(Radius.circular(10))),
                     child: ElevatedButton(
                         onPressed: () {
-                          final id = ApiServices.storePatient(
-                            _selectedItem == 'Fever' ? 1 : 2,
-                            _nameController.text.isEmpty
-                                ? 'NULL'
-                                : _nameController.text,
-                            _ageController.text.isEmpty
-                                ? 1
-                                : int.parse(
-                                    _ageController.text,
-                                  ),
-                          ).then((value) {
 
-                          });
                           showDialog<void>(
                             context: context,
                             builder: (BuildContext context) {
@@ -362,12 +350,21 @@ class _DoctorState extends State<Doctor> {
                                     child: const Text('Submit'),
                                     onPressed: () {
                                       // _selectedItem == 'Fever' ? '1' : '2'
+                                      final id = ApiServices.storePatient(
+                                        _selectedItem == 'Fever' ? '1' : '2',
+                                        _nameController.text.isEmpty
+                                            ? 'NULL'
+                                            : _nameController.text,
+                                        _ageController.text,
+                                      ).then((value) {
+                                        print('ID is $value');
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    TestScreen(patientID: value.toString(),)));
+                                      });
 
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  TestScreen()));
                                     },
                                   ),
                                 ],
